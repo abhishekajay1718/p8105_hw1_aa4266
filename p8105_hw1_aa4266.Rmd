@@ -1,0 +1,13 @@
+---
+title: "Homework 1"
+author: "Abhishek Ajay (aa4266)"
+date: "September 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+  knitr::opts_chunk$set(echo = TRUE)
+  library(tidyverse)
+
+```
