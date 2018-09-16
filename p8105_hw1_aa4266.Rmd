@@ -16,9 +16,10 @@ output: html_document
 
 Creating a data frame as instructed.
 
-```{r problem_1}
+```{r problem_1_1}
 
 set.seed(1)
+
 problem1_df = tibble( 
                         vec_numeric_col1 = runif(n = 10, min = 0, max = 5),
                         vec_logical_col2 = vec_numeric_col1 > 2,
@@ -27,4 +28,27 @@ problem1_df = tibble(
                       )
   
 problem1_df
+
+mean(problem1_df)
+
+problem1_df_vec_logical_col2_numeric = as.numeric(problem1_df$vec_logical_col2)
+
+problem1_df_vec_char_col3_numeric = as.numeric(problem1_df$vec_char_col3)
+
+problem1_df_vec_factor_col4_numeric = as.numeric(problem1_df$vec_factor_col4)
+
 ```
+
+```{r problem_1_2}
+
+problem1_df_vec_char_col3_factor_numeric = as.numeric(as.factor(problem1_df$vec_char_col3))
+
+problem1_df_vec_char_col3_factor_numeric
+
+problem1_df_vec_factor_col4_char_numeric = as.numeric(as.character(problem1_df$vec_factor_col4))
+
+problem1_df_vec_factor_col4_char_numeric
+
+```
+
+In the above output we see that the character vector when converted to factor and then that to numeric gives a proper output of integers. However, the factor vector when converted to character and then numeric gives NA for each entry.
