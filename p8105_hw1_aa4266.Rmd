@@ -25,7 +25,7 @@ problem1_df = tibble(
                         vec_logical_col2 = vec_numeric_col1 > 2,
                         vec_char_col3 = c("This", "is", "my", "first", "try", "with", "using", "R", "and", "RStudio"),
                         vec_factor_col4 = factor(c("Male", "Female", "Female", "Female", "Female", "Male", "Female", "Male", "Male", "Female"))
-                      )
+)
   
 problem1_df
 
@@ -52,3 +52,20 @@ problem1_df_vec_factor_col4_char_numeric
 ```
 
 In the above output we see that the character vector when converted to factor and then that to numeric gives a proper output of integers. However, the factor vector when converted to character and then numeric gives NA for each entry.
+
+
+```{r problem_2}
+
+set.seed(1)
+
+problem2_df = tibble(
+                    x = rnorm(1000),
+                    y = rnorm(1000),
+                    vec_logical_col3 = x + y > 0,
+                    vec_numeric_col4 = as.numeric(vec_logical_col3),
+                    vec_factor_col5 = as.factor(vec_logical_col3)
+)
+
+```
+
+Here we discuss about the various properties of our vector. *The size of our data set is `r dim(problem2_df)`.* The mean of the first column, x, is `r mean(problem2_df$x)` and its median is `r median(problem2_df$x)`. The proportion of cases for which the logical vector is true: `r length(problem2_df$vec_logical_col3[which(problem2_df$vec_logical_col3 == 'TRUE')])/nrow(problem2_df)`
