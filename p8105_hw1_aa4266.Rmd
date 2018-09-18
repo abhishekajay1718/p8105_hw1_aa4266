@@ -75,8 +75,12 @@ The proportion of cases for which the logical vector is true: `r length(problem2
 
 ```{r scatterplot_problem2_df}
 
-ggplot(problem2_df, aes(x = x, y = y, color = vec_logical_col3)) + geom_point()
-  
+ggsave(ggplot(problem2_df, aes(x = x, y = y, color = vec_logical_col3)) + geom_point()
+)
+ggplot(problem2_df, aes(x = x, y = y, color = vec_numeric_col4)) + geom_point()
+
+ggplot(problem2_df, aes(x = x, y = y, color = vec_factor_col5)) + geom_point()
+
 ```
 
 
