@@ -175,11 +175,11 @@ mean(problem1_df$vec_numeric_col1) #We get a mean value since the vector is of n
 
 problem1_df_vec_logical_col2_numeric = as.numeric(problem1_df$vec_logical_col2)
 
+problem1_df_vec_factor_col4_numeric = as.numeric(problem1_df$vec_factor_col4)
+
 problem1_df_vec_char_col3_numeric = as.numeric(problem1_df$vec_char_col3)</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
-<pre class="r"><code>problem1_df_vec_factor_col4_numeric = as.numeric(problem1_df$vec_factor_col4)
-
-#The logical and factor vectors are transformed into numeric data type however, NAs are introduced by coercion into the character vector</code></pre>
+<pre class="r"><code>#The logical and factor vectors are transformed into numeric data type however, NAs are introduced by coercion into the character vector</code></pre>
 <pre class="r"><code>#Explicit sequential coercion of the character vectors of problem1_df to factor and then to numeric
 
 problem1_df_vec_char_col3_factor_numeric = as.numeric(as.factor(problem1_df$vec_char_col3))
