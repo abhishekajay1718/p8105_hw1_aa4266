@@ -7,8 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 
-  knitr::opts_chunk$set(echo = TRUE)
-  library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
 
 ```
 
@@ -68,4 +69,15 @@ problem2_df = tibble(
 
 ```
 
-Here we discuss about the various properties of our vector. *The size of our data set is `r dim(problem2_df)`.* The mean of the first column, x, is `r mean(problem2_df$x)` and its median is `r median(problem2_df$x)`. The proportion of cases for which the logical vector is true: `r length(problem2_df$vec_logical_col3[which(problem2_df$vec_logical_col3 == 'TRUE')])/nrow(problem2_df)`
+Here we discuss about the various properties of our vector. *The size of our data set is `r dim(problem2_df)`.* The mean of the first column, x, is `r mean(problem2_df$x)` and its median is `r median(problem2_df$x)`. 
+
+The proportion of cases for which the logical vector is true: `r length(problem2_df$vec_logical_col3[which(problem2_df$vec_logical_col3 == 'TRUE')])/nrow(problem2_df)`.
+
+```{r scatterplot_problem2_df}
+
+ggplot(problem2_df, aes(x = x, y = y, color = vec_logical_col3)) + geom_point()
+  
+```
+
+
+
