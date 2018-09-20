@@ -2,7 +2,7 @@
 title: "Homework 1"
 author: "Abhishek Ajay (aa4266)"
 date: "September 14, 2018"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -18,60 +18,63 @@ library(ggplot2)
 
 Creating a data frame as instructed.
 
-```{r problem_1_1}
+```{r problem_1_1, warning= FALSE}
 
 #Creating data frame problem1_df
 
 set.seed(1)
 
 problem1_df = tibble( 
-                        vec_numeric_col1 = runif(n = 10, min = 0, max = 5),
-                        vec_logical_col2 = vec_numeric_col1 > 2,
-                        vec_char_col3 = c("This", "is", "my", "first", "try", "with", "using", "R", "and", "RStudio"),
-                        vec_factor_col4 = factor(c("Male", "Female", "Female", "Female", "Female", "Male", "Female", "Male", "Male", "Female"))
+  vec_numeric = runif(n = 10, min = 0, max = 5),
+  vec_logical = vec_numeric > 2,
+  vec_char = c("This", "is", "my", "first", "try", "with", "using", "R", "and", "RStudio"),
+  vec_factor = factor(c("Male", "Female", "Female", "Female", "Female", "Male", "Female", "Male", "Male", "Female"))
 )
 
 problem1_df
 
 #Mean of each variable of our data frame, problem1_df
 
-mean(problem1_df$vec_numeric_col1) #We get a mean value since the vector is of numeric data type
+#We get a mean value since the vector is of numeric data type
+mean(problem1_df$vec_numeric) 
 
-mean(problem1_df$vec_logical_col2) #We get a mean value since the logical variables are binomial with True = 1 and False = 0
+#We get a mean value since the logical variables are binomial with True = 1 and False = 0
+mean(problem1_df$vec_logical) 
 
-mean(problem1_df$vec_char_col3) #Since the argument isn't numeric or logical, we get NA by coercion
+#Since the argument isn't numeric or logical, we get NA by coercion
+mean(problem1_df$vec_char) 
 
-mean(problem1_df$vec_factor_col4) #Since the argument isn't numeric or logical, we get NA by coercion
+#Since the argument isn't numeric or logical, we get NA by coercion
+mean(problem1_df$vec_factor) 
 
 ```
 
-```{r problem_1_2}
+```{r problem_1_2, warning= FALSE, eval= FALSE}
 
 #Explicit coercion of the logical, character and factor vectors of problem1_df to numeric type
 
-problem1_df_vec_logical_col2_numeric = as.numeric(problem1_df$vec_logical_col2)
+as.numeric(problem1_df$vec_logical)
 
-problem1_df_vec_factor_col4_numeric = as.numeric(problem1_df$vec_factor_col4)
+as.numeric(problem1_df$vec_factor)
 
-problem1_df_vec_char_col3_numeric = as.numeric(problem1_df$vec_char_col3)
+as.numeric(problem1_df$vec_char)
 
 #The logical and factor vectors are transformed into numeric data type however, NAs are introduced by coercion into the character vector
 
 ```
 
-```{r problem_1_3}
+```{r problem_1_3, warning= FALSE}
 
 #Explicit sequential coercion of the character vectors of problem1_df to factor and then to numeric
 
-problem1_df_vec_char_col3_factor_numeric = as.numeric(as.factor(problem1_df$vec_char_col3))
-
-problem1_df_vec_char_col3_factor_numeric #The character column, when tranformed into factor and then numeric gives the index value of each entry as observed in the levels vector
+#The character column, when tranformed into factor and then numeric gives the index value of each entry as observed in the levels vector
+as.numeric(as.factor(problem1_df$vec_char))
 
 #Explicit sequential coercion of the factor vectors of problem1_df to character and then to numeric
 
-problem1_df_vec_factor_col4_char_numeric = as.numeric(as.character(problem1_df$vec_factor_col4))
 
-problem1_df_vec_factor_col4_char_numeric #The factor column when tranformed into character and then numeric has NAs by coercion as its output since it has been converted to character first
+#The factor column when tranformed into character and then numeric has NAs by coercion as its output since it has been converted to character first
+as.numeric(as.character(problem1_df$vec_factor))
 
 ```
 
@@ -86,11 +89,11 @@ In the above output we see that the character vector when converted to factor an
 set.seed(1)
 
 problem2_df = tibble(
-                    x = rnorm(1000),
-                    y = rnorm(1000),
-                    vec_logical_col3 = x + y > 0,
-                    vec_numeric_col4 = as.numeric(vec_logical_col3),
-                    vec_factor_col5 = as.factor(vec_logical_col3)
+  x = rnorm(1000),
+  y = rnorm(1000),
+  vec_logical = x + y > 0,
+  vec_numeric = as.numeric(vec_logical),
+  vec_factor = as.factor(vec_logical)
 )
 
 ```
@@ -105,19 +108,19 @@ Short decription of the data frame created for problem 2:
 
 <!-- calculating the proportion of cases where logical vector in problem2_df is true by dividing the length of the list of true responses in the logical vector by the total row count (i.e 1000) --> 
 
-* The proportion of cases for which the logical vector is true: **`r length(problem2_df$vec_logical_col3[which(problem2_df$vec_logical_col3 == 'TRUE')])/nrow(problem2_df)`**.
+* The proportion of cases for which the logical vector is true: **`r length(problem2_df$vec_logical[which(problem2_df$vec_logical == 'TRUE')])/nrow(problem2_df)`**.
 
 ```{r scatterplot_problem2_df}
 
 #Creating scatter plots of data in problem2_df using the ggplot2 package and saving the first plot
 
-ggplot(problem2_df, aes(x = x, y = y, color = vec_logical_col3)) + geom_point()
+ggplot(problem2_df, aes(x = x, y = y, color = vec_logical)) + geom_point()
 
 ggsave(filename = "C:/Users/abhis/OneDrive/Desktop/School/Semester 1/P8105/homework_1/p8105_hw1_aa4266/problem2_df_colour_logical_plot.png")
 
-ggplot(problem2_df, aes(x = x, y = y, color = vec_numeric_col4)) + geom_point()
+ggplot(problem2_df, aes(x = x, y = y, color = vec_numeric)) + geom_point()
 
-ggplot(problem2_df, aes(x = x, y = y, color = vec_factor_col5)) + geom_point()
+ggplot(problem2_df, aes(x = x, y = y, color = vec_factor)) + geom_point()
 
 ```
 
